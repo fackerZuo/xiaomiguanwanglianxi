@@ -1,0 +1,4 @@
+@import url(.public.css);
+.a:hover{
+  color:red;
+}
