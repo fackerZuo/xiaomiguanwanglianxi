@@ -165,11 +165,11 @@ window.onscroll=function(){
 //明星单品、热评产品、为你推荐的轮播
 var leftbtn=$(".zuozuojt")[0];
 var rightbtn=$(".youyoujt")[0];
-var lunbobj=$(".xmdplunbobox")[0];
+var lunbobj=$(".leftchosebox")[0];
 var imgbox=$(".xmdplunbo")[0];
 var index=0;
 rightbtn.style.color="#000";
-setInterval(twomove,3000)
+var k=setInterval(twomove,3000)
 function twomove(){ 
   if(index==0){
     leftbtn.style.color="#000";
@@ -185,12 +185,12 @@ function twomove(){
   }
   animate(imgbox,{marginLeft:-index*1226},500);
 }
-// lunbobj.onmouseover=function(){
-//   clearInterval(k);
-// }
-// lunbobj.onmouseout=function(){
-//   var t=setInterval(k);
-// }
+lunbobj.onmouseover=function(){
+  clearInterval(k);
+}
+lunbobj.onmouseout=function(){
+ k=setInterval(twomove,3000);
+}
 rightbtn.onclick=function(){
   twomove();
 }
@@ -213,72 +213,66 @@ leftbtn.onclick=function(){
 
 //内容里面的lunbo
 
-// var allfloor=$(".lunbowheel");
-// for(var b=0;b<allfloor.length;b++){
-//   g(b);
-// }
-// function g(b){
-//     var bigbackground=getClass("lunbowheel")[b];//固定盒子  共同类名lunbowheel
-//     var allimg=getClass("lunbowheelimgs")[b]; //lunbowheelimgs
-//     var imgW=420;
-//     var btn=getClass("nr-gundong")[b].getElementsByTagName("div");//lunboLunbo
-//     var leftbtn=getClass("nr-box1zjt")[b];// lunboZjt
-//     var rightbtn=getClass("nr-box2yjt")[b];//  lunboYjt
+var allfloors=$(".lunbowheel");
+for(var b=0;b<allfloors.length;b++){
+  g(b);
+}
+function g(b){
+    var bigbackground=getClass("lunbowheel")[b];//固定盒子  共同类名lunbowheel
+    var allimg=getClass("neironglunbo")[b]; //lunbowheelimgs
+    var img=getClass("lunbowheelimgs")//每次移动的盒子
+    var imgW=img[0].offsetWidth;
+    var btn=getClass("nr-gundong")[b].getElementsByTagName("div");//lunboLunbo
+    var leftbtn=getClass("nr-box1zjt")[b];// lunboZjt
+    var rightbtn=getClass("nr-box1yjt")[b];//  lunboYjt
 
-// //最大的背景，所有图片，每个图片的宽度，轮播按钮，左边的按钮，右边的按钮，
-//     var index=0;
-//   // t=setInterval(move,2000)
-//   function move(){
-//        index++;
-//        if(index==allimg.length){
-//         index=0
-//        }
-//         for(var i=0;i<allimg.length;i++){
-//           yuan[i].className="";
-//         }
-//         yuan[index].className="hot";
-
-//        animate(imgs,{marginLeft:-index*imgW},500)
-//   }
+//最大的背景，所有图片，每个图片的宽度，轮播按钮，左边的按钮，右边的按钮，
+    var index=0;
+  function move(){
+       index++;
+       if(index==btn.length){
+          index=btn.length-1;
+          return;
+       }
+        for(var i=0;i<btn.length;i++){
+          btn[i].className="nr-yuan";
+        }
+        btn[index].className="hot";
+        console.log(index)
+       animate(allimg,{marginLeft:-index*imgW},500)
+  }
     
-//     //鼠标移入移出停止
-//    // wheelbj.onmouseover=function(){
-//    //    clearInterval(t)
-//    // }
-//    // wheelbj.onmouseout=function(){
-//    //   t=setInterval(move,2000)
-//    // }
-//   // //选项卡
-//     for(var i=0;i<img.length;i++){
-//       yuan[i].index=i;
-//       yuan[i].onclick=function(){
-//         animate(imgs,{marginLeft:-this.index*imgW},500)
-//         for(var j=0;j<img.length;j++){
-//           yuan[j].className="";
-//         }
-//         yuan[this.index].className="hot";
-//       }
-//     }
+  // //选项卡
+    for(var i=0;i<btn.length;i++){
+      btn[i].index=i;
+      btn[i].onclick=function(){
+        animate(allimg,{marginLeft:-this.index*imgW},500)
+        for(var j=0;j<btn.length;j++){
+          btn[j].className="nr-yuan";
+        }
+        btn[this.index].className="hot";
+      }
+    }
 
   
-//     //左右箭头
-//     var rBtn=getClass("rightJt")[0];
-//     var lBtn=getClass("leftJt")[0];
-//     rBtn.onclick=function(){
-//       move()
-//     }
-//     lBtn.onclick=function(){
-//         index--;
-//         if(index==-1){
-//           index=img.length-1;
-//         }
-//         for(var i=0;i<img.length;i++){
-//           yuan[i].className="";
-//         }
-//         yuan[index].className="hot";
-//         animate(imgs,{marginLeft:-index*imgW},500)
-//     }
-    // }
+    //左右箭头
+    rightbtn.onclick=function(){
+      move()
+    }
+    leftbtn.onclick=function(){
+        index--;
+        if(index==-1){
+          index=0;
+          return;
+        }
+        for(var i=0;i<btn.length;i++){
+          btn[i].className="nr-yuan";
+        }
+        console.log(index)
+        btn[index].className="hot";
+        animate(allimg,{marginLeft:-index*imgW},500)
+    }
+    }
 
 
 }

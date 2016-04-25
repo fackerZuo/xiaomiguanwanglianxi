@@ -435,7 +435,7 @@
   display:block;
 }
 .zuoyoujt{
-  width:80px;
+  width:68px;
   height:25px;
   position:absolute;
   top:15px;
@@ -451,6 +451,8 @@
   text-align: left;
   margin-left: -5px;
   color:#b0b0b0;
+  cursor: pointer;
+  border-right: 1px solid #ccc;
 }
 .youyoujt{
   width:36px;
@@ -460,6 +462,8 @@
   line-height: 24px;
   text-align: left;
   color:#b0b0b0;
+  cursor: pointer;
+  /*border-left: 1px solid #ccc;*/
 }
 .title0{
   width:1226px;
@@ -1044,8 +1048,21 @@
 .nr-gundong .nr-yuan{
   background:#fff;
 }
-.nr-gundong .nr-yuan:hover{
+/*.nr-gundong .nr-yuan:hover{
   background:#ff5700;
+}*/
+.hot{
+  width:7px;
+  height:7px;
+  background:#ff5700;
+  float:left;
+  margin:8px;
+  z-index:13;
+  border-radius:50%;
+  border:2px;
+  border-color:#b0b0b0;
+  border-style:solid;
+  cursor:pointer;
 }
 .sp-bigbox{
   width:1240px
